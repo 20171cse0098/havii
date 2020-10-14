@@ -1,0 +1,94 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation Form</title>
+   <center><h1 style="color: red;">Registration for Online course</center> 
+    </h1>
+<script type="text/javascript">
+function validate()
+{
+var name=document.forms["form"]["name"].value;
+if(name=="")
+{
+    alert("name cannot be empty");
+    return false
+}
+var Age=document.forms["form"]["AGE"].value;
+if(Age <1 || Age >80)
+{
+    alert("Age should be between 1 and 80");
+    return false;
+}
+var gender=document.getElementsByName("gender");
+if ( (gender[0].checked == false ) && ( gender[1].checked == false ) && ( gender[2].checked == false ) ) 
+        {
+        alert ( "Please choose your Gender(Male,Female,Other)" ); 
+        return false;
+        }
+        var pwd=document.getElementById("PWD").value; 
+      var cpwd=document.getElementById("CPWD").value;
+      var regularExpression = /^(?=.*[\d])(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,16}$/;
+      if(pwd==" ")
+    {
+        alert("password field is empty")
+        PWD.focus()
+        return false;
+	}
+   if (!regularExpression.test(pwd))
+   {
+       alert("enter pwd with minimum one number,special symbol and 8 or more characters")
+       PWD.focus();
+       return false;
+	}
+    document.getElementById("right_password").innerHTML = 'Strong Password';
+    
+    if (cpwd=="")
+    {
+        alert("please confirm your password");
+        CPWD.focus();
+        return false;
+	}
+    if(cpwd!=pwd)
+    {
+        alert("not matching , please enter right passowrd")
+        CPWD.focus();
+        return false;
+	} 
+    else if(cpwd===pwd){
+        document.getElementById("right_password").innerHTML = 'Passwords Matching';
+        alert("Registration Successfull")
+        return true;
+    }
+    }
+
+</script>
+</head>
+<body>
+    <fieldset>
+       <center><legend> <h2><u>Validation Form</u></h2></legend></center> 
+
+<center>   <form name="form" action="" onsubmit=" return validate()" method="POST">
+Name:&nbsp;<input type="text" name="name" pattern="[A-za-z]{3,}" maxlength="10" > <br> <br>
+Age: &nbsp; <input type="text" name="AGE" pattern="[*\d]{1,}" required > <br> <br>
+Gender:<br> <input type="radio" name="gender" value="male"> Male
+<input type="radio" name="gender" value="female"> Female 
+<input type="radio" name="gender" value="Other"> Other 
+<br> <br>
+Organization with Place: <br>
+<textarea name="ADDRESS" id="" cols="20" rows="3" minlength="10" required></textarea> <br> <br>
+Mobile: &nbsp;
+    <input type="text" name="mob" pattern="[*\d]{10,}" maxlength="10" required> <br> <br>
+Email: &nbsp;
+    <input type="email" id="mail" required > <br> <br>
+    Password: <br> <div id="right_password" ></div>
+<input type="password" id="PWD"  > <br>
+Confirm_Password: <br>
+<input type="password" id="CPWD" > <br>  <br>   
+<input type="Submit" value="Submit"> 
+<input type="Reset" value="Reset">
+</fieldset>
+</form>    
+</center>    
+</body>
+</html>
